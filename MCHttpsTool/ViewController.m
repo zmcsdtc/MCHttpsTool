@@ -16,22 +16,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-//    [self testNetWork];
+    [self testNetWork];
     
-    UIImageView*iv=[[UIImageView alloc]initWithFrame:CGRectMake(0, 20, 300, 200)];
-    iv.backgroundColor=[UIColor yellowColor];
-    [self.view addSubview:iv];
-    [MCHttpsTool downLoadImage:@"http://i1.hoopchina.com.cn/u/1602/29/144/1144/b393b021jpg.jpg" placeholderImgae:[UIImage imageNamed:@"123.jpg"] toImageView:iv];
+//    UIImageView*iv=[[UIImageView alloc]initWithFrame:CGRectMake(0, 20, 300, 200)];
+//    iv.backgroundColor=[UIColor yellowColor];
+//    [self.view addSubview:iv];
+//    [MCHttpsTool downLoadImage:@"http://i1.hoopchina.com.cn/u/1602/29/144/1144/b393b021jpg.jpg" placeholderImgae:[UIImage imageNamed:@"123.jpg"] toImageView:iv];
     
     
 }
 - (void) testNetWork{
-    [MCHttpsTool postRequest:@"https://www.baidu.com" params:nil success:^(id responseObject) {
-        NSLog(@"re=%@",responseObject);
+    [MCHttpsTool get:@"http://www.weather.com.cn/data/sk/101010100.html" params:nil success:^(id responseObj) {
+#warning mark- 返回的结果是nsdata类型
+        NSData *doubi = responseObj;
+//        NSString *shabi =  [[NSString alloc]initWithData:doubi encoding:NSUTF8StringEncoding];
+        NSDictionary*dic=[NSJSONSerialization JSONObjectWithData:doubi options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"dic=%@",dic);
     } failure:^(NSError *error) {
         NSLog(@"er=%@",error);
-    } timeoutInt:2];
+    }];
+
 }
 
 

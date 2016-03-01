@@ -9,44 +9,42 @@
 #import "MCHttpsTool.h"
 
 @implementation MCHttpsTool
-+ (void)getRequest:(NSString *)url params:(NSDictionary *)params success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure timeoutInt:(NSTimeInterval)timeoutInt{
++ (void)get:(NSString *)url params:(NSDictionary *)params success:(void (^)(id responseObj))success failure:(void (^)(NSError *error))failure;
+{
+    // 1.获得请求管理者
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    mgr.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-    [mgr.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-    [mgr.requestSerializer didChangeValueForKey:@"timeoutInterval"];
-    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
-    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
-    mgr.requestSerializer.timeoutInterval=timeoutInt;
-    [mgr GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if (success) {
-            success(responseObject);
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
+    mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
+    mgr.responseSerializer = [AFHTTPResponseSerializer serializer];
+    // 2.发送GET请求
+    [mgr GET:url parameters:params
+     success:^(AFHTTPRequestOperation *operation, id responseObj) {
+         if (success) {
+             success(responseObj);
+         }
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         if (failure) {
+             failure(error);
+         }
+     }];
 }
 
-+ (void)postRequest:(NSString *)url params:(NSDictionary *)params success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure timeoutInt:(NSTimeInterval)timeoutInt{
++ (void)post:(NSString *)url params:(NSDictionary *)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+    // 1.获得请求管理者
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    mgr.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-    [mgr.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-    [mgr.requestSerializer didChangeValueForKey:@"timeoutInterval"];
-    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
-    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
-    mgr.requestSerializer.timeoutInterval=timeoutInt;
-    [mgr.requestSerializer didChangeValueForKey:@"timeoutInterval"];
-    [mgr POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if (success) {
-            success(responseObject);
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
-    
+    mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
+    mgr.responseSerializer = [AFHTTPResponseSerializer serializer];
+    // 2.发送POST请求
+    [mgr POST:url parameters:params
+      success:^(AFHTTPRequestOperation *operation, id responseObj) {
+          if (success) {
+              success(responseObj);
+          }
+      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+          if (failure) {
+              failure(error);
+          }
+      }];
 }
 
 +(void)networkReachabilituStatus:(void(^)(MCNetWorkStatus networkStatus))networkStatus{

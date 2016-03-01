@@ -35,25 +35,25 @@ typedef NS_ENUM(NSInteger, MCNetWorkStatus) {
 
 @interface MCHttpsTool : NSObject
 /**
- *  get请求
+ *  发送一个GET请求-返回的response类型是十六进制
  *
- *  @param url     请求地址
- *  @param params  请求体
- *  @param success 成功后调用
- *  @param failure 失败后调用
+ *  @param url     请求路径
+ *  @param params  请求参数
+ *  @param success 请求成功后的回调（请将请求成功后想做的事情写到这个block中）
+ *  @param failure 请求失败后的回调（请将请求失败后想做的事情写到这个block中）
  */
-+ (void)getRequest:(NSString *)url params:(NSDictionary *)params success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure timeoutInt:(NSTimeInterval)timeoutInt;
++ (void)get:(NSString *)url params:(NSDictionary *)params success:(void (^)(id responseObj))success failure:(void (^)(NSError *error))failure;
 
 
 /**
- *  post请求
+ *  post请求-返回的response类型是十六进制
  *
- *  @param url     请求地址
- *  @param params  请求体
- *  @param success 成功后调用
- *  @param failure 失败后调用
+ *  @param url     请求路径
+ *  @param params  请求参数
+ *  @param success 请求成功后的回调（请将请求成功后想做的事情写到这个block中）
+ *  @param failure 请求失败后的回调（请将请求失败后想做的事情写到这个block中）
  */
-+ (void)postRequest:(NSString *)url params:(NSDictionary *)params success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure timeoutInt:(NSTimeInterval)timeoutInt;
++ (void)post:(NSString *)url params:(NSDictionary *)params success:(void (^)(id responseObj))success failure:(void (^)(NSError *error))failure;
 
 /**
  *  当前的网络状态
