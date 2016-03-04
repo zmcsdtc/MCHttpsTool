@@ -62,6 +62,9 @@ typedef NS_ENUM(NSInteger, MCNetWorkStatus) {
  */
 
 +(void)networkReachabilituStatus:(void(^)(MCNetWorkStatus networkStatus))networkStatus;
+
+
+#pragma mark-基于SDWebImage的下载图片封装
 /**
  *  下载图片
  *

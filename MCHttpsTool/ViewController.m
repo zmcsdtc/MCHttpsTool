@@ -23,6 +23,34 @@
 //    [self.view addSubview:iv];
 //    [MCHttpsTool downLoadImage:@"http://i1.hoopchina.com.cn/u/1602/29/144/1144/b393b021jpg.jpg" placeholderImgae:[UIImage imageNamed:@"123.jpg"] toImageView:iv];
     
+    [MCHttpsTool networkReachabilituStatus:^(MCNetWorkStatus networkStatus) {
+        switch (networkStatus) {
+            case MCNetWorkStatusWiFi:
+            {
+                NSLog(@"MCNetWorkStatusWiFi");
+            }
+                break;
+            case MCNetWorkStatusNotReachable:
+            {
+                NSLog(@"MCNetWorkStatusNotReachable");
+            }
+                break;
+            case MCNetWorkStatusUnknown:
+            {
+                NSLog(@"MCNetWorkStatusUnknown");
+            }
+                break;
+            case MCNetWorkStatusReachableViaWWAN:
+            {
+                NSLog(@"MCNetWorkStatusWiFi");
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+    }];
     
 }
 - (void) testNetWork{

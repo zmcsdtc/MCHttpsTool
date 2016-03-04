@@ -49,6 +49,7 @@
 
 +(void)networkReachabilituStatus:(void(^)(MCNetWorkStatus networkStatus))networkStatus{
     AFNetworkReachabilityManager*mgr=[AFNetworkReachabilityManager sharedManager];
+    [mgr startMonitoring];
     [mgr setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         if (networkStatus) {
             networkStatus((NSInteger)status);
