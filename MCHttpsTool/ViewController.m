@@ -55,11 +55,11 @@
 }
 - (void) testNetWork{
     [MCHttpsTool get:@"http://www.weather.com.cn/data/sk/101010100.html" params:nil success:^(id responseObj) {
-#warning mark- 返回的结果是nsdata类型
-        NSData *doubi = responseObj;
-//        NSString *shabi =  [[NSString alloc]initWithData:doubi encoding:NSUTF8StringEncoding];
-        NSDictionary*dic=[NSJSONSerialization JSONObjectWithData:doubi options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"dic=%@",dic);
+//#warning mark- 返回的结果是nsdata类型
+//        NSData *doubi = responseObj;
+////        NSString *shabi =  [[NSString alloc]initWithData:doubi encoding:NSUTF8StringEncoding];
+//        NSDictionary*dic=[NSJSONSerialization JSONObjectWithData:doubi options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"dic=%@",responseObj);
     } failure:^(NSError *error) {
         NSLog(@"er=%@",error);
     }];
