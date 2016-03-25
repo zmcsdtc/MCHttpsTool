@@ -54,7 +54,7 @@
     
 }
 - (void) testNetWork{
-    [MCHttpsTool get:@"http://www.weather.com.cn/data/sk/101010100.html" params:nil success:^(id responseObj) {
+    [MCHttpsTool get:@"http://www.weather.com.cn/data/sk/101010100.html" params:nil timeOut:0.004 success:^(id responseObj) {
 //#warning mark- 返回的结果是nsdata类型
 //        NSData *doubi = responseObj;
 ////        NSString *shabi =  [[NSString alloc]initWithData:doubi encoding:NSUTF8StringEncoding];

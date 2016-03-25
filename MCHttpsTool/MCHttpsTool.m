@@ -9,10 +9,11 @@
 #import "MCHttpsTool.h"
 
 @implementation MCHttpsTool
-+ (void)get:(NSString *)url params:(NSDictionary *)params success:(void (^)(id responseObj))success failure:(void (^)(NSError *error))failure;
++(void)get:(NSString *)url params:(NSDictionary *)params timeOut:(NSTimeInterval )timeInterval success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
     // 1.获得请求管理者
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    mgr.requestSerializer.timeoutInterval=timeInterval;
 //    mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
 //    mgr.responseSerializer = [AFHTTPResponseSerializer serializer];
     // 2.发送GET请求
@@ -37,10 +38,11 @@
     }];
 }
 
-+ (void)post:(NSString *)url params:(NSDictionary *)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
++(void)post:(NSString *)url params:(NSDictionary *)params timeOut:(NSTimeInterval)timeInterval success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
     // 1.获得请求管理者
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    mgr.requestSerializer.timeoutInterval=timeInterval;
 //    mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
 //    mgr.responseSerializer = [AFHTTPResponseSerializer serializer];
 //    // 2.发送POST请求
